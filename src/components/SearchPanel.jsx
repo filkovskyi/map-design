@@ -48,13 +48,15 @@ const defaultCityList = [
 
 const SearchPanel = ({
   setDefaultLatitude,
-  setDefaultLongitude
+  setDefaultLongitude,
+  setDefaultCity
 }) => {
   const onSearch = value => console.log(value);
 
   const onChangeHandler = event => {
     setDefaultLatitude(event.target.latitude)
     setDefaultLongitude(event.target.longitude)
+    setDefaultCity(event.target.value)
   }
 
   return (

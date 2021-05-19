@@ -64,6 +64,7 @@ const MapViewer = () => {
   const [mapStyle, setMapStyle] = useState(`${defaultMapStyle}/${streetsV11}`);
   const [defaultLatitude, setDefaultLatitude] = useState(50.4501)
   const [defaultLongitude, setDefaultLongitude] = useState(30.5234)
+  const [defaultCity, setDefaultCity] = useState('Kyiv')
   return (
     <>
       <Row gutter={24}>
@@ -72,6 +73,7 @@ const MapViewer = () => {
             <SearchPanel
               setDefaultLatitude={setDefaultLatitude}
               setDefaultLongitude={setDefaultLongitude}
+              setDefaultCity={setDefaultCity}
             />
             <ControlPanel
               mapStyle={mapStyle}
@@ -85,6 +87,7 @@ const MapViewer = () => {
             mapStyle={mapStyle}
             defaultLatitude={defaultLatitude}
             defaultLongitude={defaultLongitude}
+            defaultCity={defaultCity}
           />
         </Col>
       </Row>

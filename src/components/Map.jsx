@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL from 'react-map-gl';
 
-
-const Map = ({ mapStyle, defaultLatitude, defaultLongitude }) => {
+const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   const initialViewportValues = {
     latitude: defaultLatitude,
     longitude: defaultLongitude,
@@ -22,12 +21,20 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude }) => {
   }, [defaultLatitude, defaultLongitude]);
 
   return (
-    <ReactMapGL
-      {...viewport}
-      mapStyle={mapStyle}
-      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-      onViewportChange={(viewport) => setViewport(viewport)}
-    />
+    <div className={'map-box-wrapper'}>
+      <ReactMapGL
+        {...viewport}
+        style={{
+          margin: '0 auto'
+        }}
+        mapStyle={mapStyle}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        onViewportChange={(viewport) => setViewport(viewport)}
+      />
+      <div className={'map-box-city'}>
+        <p className={'map-box-city-title'}>{defaultCity}</p>
+      </div>
+    </div>
   );
 };
 

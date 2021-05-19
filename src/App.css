@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .App {
   height: 100vh !important;
   text-align: center;
@@ -41,4 +43,54 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.map-box-wrapper {
+  position: relative;
+}
+
+.map-box-wrapper .map-box-map-gl {
+  margin: 0 auto;
+}
+
+.map-box-wrapper .map-box-city {
+  position: absolute;
+  display: block;
+  width: 400px;
+  left: 50%;
+  top: 353px;
+  font-family: 'Bebas Neue', cursive;
+  font-weight: bold;
+  font-size: 30px;
+  transform: translateX(-50%);
+  background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+.map-box-wrapper .map-box-city-title {
+  margin: 0 auto;
+}
+
+.map-box-wrapper .map-box-city-title::before {
+  content: '';
+  display: inline-block;
+  width: 150px;
+  height: 4px;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+}
+
+.map-box-wrapper .map-box-city-title::after {
+  content: '';
+  display: inline-block;
+  width: 150px;
+  height: 4px;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
 }
