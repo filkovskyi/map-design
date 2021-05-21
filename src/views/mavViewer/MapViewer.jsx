@@ -68,7 +68,8 @@ const MapViewer = () => {
   return (
     <>
       <Row gutter={24}>
-        <Col xs={24} md={8}>
+        hello
+        {/* <Col xs={24} md={8}>
           <Space direction="vertical">
             <SearchPanel
               setDefaultLatitude={setDefaultLatitude}
@@ -89,7 +90,7 @@ const MapViewer = () => {
             defaultLongitude={defaultLongitude}
             defaultCity={defaultCity}
           />
-        </Col>
+        </Col> */}
       </Row>
     </>
   );
