@@ -28,7 +28,8 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
           margin: '0 auto'
         }}
         mapStyle={mapStyle}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        //mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        mapboxApiAccessToken={'pk.eyJ1IjoiaXZhbmRyYWdvIiwiYSI6ImNrZ2Rzdng3dzEwam4yeXFhNmtkM2FlejMifQ.lhT4dTPZIMEBqm6wLQtxaQ'}
         onViewportChange={(viewport) => setViewport(viewport)}
       />
       <div className={'map-box-city'}>
