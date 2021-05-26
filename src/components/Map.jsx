@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import { Radio } from 'antd';
+import ReactMapGL, { Layer } from 'react-map-gl';
 
 const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   const initialViewportValues = {
@@ -15,9 +16,7 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     labels: false,
   }
 
-  const [viewport, setViewport] = useState(initialViewportValues);
-
-  const layerStyle = {
+  const initialLayerStyle = {
     id: 'add-3d-buildings',
     source: 'composite',
     'source-layer': 'building',
@@ -25,28 +24,17 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     type: 'fill-extrusion',
     minzoom: 15,
     paint: {
-      'fill-extrusion-color': '#aaa',
-      'fill-extrusion-height': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        15,
-        0,
-        15.05,
-        ['get', 'height']
-      ],
-      'fill-extrusion-base': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        15,
-        0,
-        15.05,
-        ['get', 'min_height']
-      ],
-      'fill-extrusion-opacity': 0.6
+      'fill-extrusion-color': '#fff',
+      'fill-extrusion-height': 10,
+      'fill-extrusion-base': 0,
+      'fill-extrusion-opacity': 0.9
     }
   };
+
+  const [viewport, setViewport] = useState(initialViewportValues);
+
+  const [layerStyle, setLayerStyle] = useState(initialLayerStyle)
+
 
   useEffect(() => {
     setViewport({
@@ -56,8 +44,61 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     })
   }, [defaultLatitude, defaultLongitude]);
 
+  const options = [
+    { label: '10', value: 10 },
+    { label: '20', value: 20 },
+    { label: '30', value: 30 },
+  ];
+
+  const onChangeHandler = e => {
+    const height = e.target.value;
+    switch (height) {
+      case 10:
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': '#fff',
+            'fill-extrusion-height': 10,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        break;
+      case 20:
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'orange',
+            'fill-extrusion-height': 20,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        break;
+      case 30:
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'red',
+            'fill-extrusion-height': 30,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        break;
+      default:
+        return
+    }
+  };
+
   return (
     <div className={'map-box-wrapper'}>
+      <Radio.Group
+        onChange={onChangeHandler}
+        options={options}
+        optionType="button"
+        buttonStyle="solid"
+      />
       <ReactMapGL
         {...viewport}
         style={{

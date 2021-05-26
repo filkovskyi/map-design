@@ -6,6 +6,7 @@ import ControlPanel from '../../components/ControlPanel'
 
 const defaultMapStyle = `mapbox://styles/mapbox`
 
+const streetsV8 = `streets-v8`
 const streetsV11 = `streets-v11`
 const outdoorsV11 = `outdoors-v11`
 const lightV10 = `light-v10`
@@ -61,7 +62,7 @@ const navList = [
 ]
 
 const MapViewer = () => {
-  const [mapStyle, setMapStyle] = useState(`${defaultMapStyle}/${streetsV11}`);
+  const [mapStyle, setMapStyle] = useState(`${defaultMapStyle}/${streetsV8}`);
   const [defaultLatitude, setDefaultLatitude] = useState(50.386030)
   const [defaultLongitude, setDefaultLongitude] = useState(30.472110)
   const [defaultCity, setDefaultCity] = useState('Kyiv')
