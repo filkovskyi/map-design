@@ -105,6 +105,7 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, activeMenuKey }) => 
           margin: '0 auto'
         }}
         mapStyle={mapStyle}
+        //better to use environment variable to store mapboxApiAccessToken
         mapboxApiAccessToken={'pk.eyJ1IjoiaXZhbmRyYWdvIiwiYSI6ImNrZ2Rzdng3dzEwam4yeXFhNmtkM2FlejMifQ.lhT4dTPZIMEBqm6wLQtxaQ'}
         onViewportChange={(viewport) => setViewport(viewport)}
       >
