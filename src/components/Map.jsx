@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Radio } from 'antd';
-import ReactMapGL, { Layer } from 'react-map-gl';
+import ReactMapGL, { Layer, Source } from 'react-map-gl';
+import data from '../assets/export.geojson'
+
 
 const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   const initialViewportValues = {
@@ -16,14 +18,32 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     labels: false,
   }
 
+  // const initialLayerStyle = {
+  //   id: 'add-3d-buildings',
+  //   source: 'composite',
+  //   'source-layer': 'building',
+  //   filter: ['==', 'extrude', 'true'],
+  //   type: 'fill-extrusion',
+  //   minzoom: 15,
+  //   paint: {
+  //     'fill-extrusion-color': '#fff',
+  //     'fill-extrusion-height': 10,
+  //     'fill-extrusion-base': 0,
+  //     'fill-extrusion-opacity': 0.9
+  //   }
+  // };
+
   const initialLayerStyle = {
-    id: 'add-3d-buildings',
-    source: 'composite',
-    'source-layer': 'building',
-    filter: ['==', 'extrude', 'true'],
-    type: 'fill-extrusion',
-    minzoom: 15,
-    paint: {
+    'id': 'extrusion',
+    'type': 'fill-extrusion',
+    "source": {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": []
+      }
+    },
+    'paint': {
       'fill-extrusion-color': '#fff',
       'fill-extrusion-height': 10,
       'fill-extrusion-base': 0,
@@ -50,55 +70,57 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     { label: '30', value: 30 },
   ];
 
-  const onChangeHandler = e => {
-    const height = e.target.value;
-    switch (height) {
-      case 10:
-        setLayerStyle({
-          ...initialLayerStyle,
-          paint: {
-            'fill-extrusion-color': '#fff',
-            'fill-extrusion-height': 10,
-            'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.9
-          }
-        })
-        break;
-      case 20:
-        setLayerStyle({
-          ...initialLayerStyle,
-          paint: {
-            'fill-extrusion-color': 'orange',
-            'fill-extrusion-height': 20,
-            'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.9
-          }
-        })
-        break;
-      case 30:
-        setLayerStyle({
-          ...initialLayerStyle,
-          paint: {
-            'fill-extrusion-color': 'red',
-            'fill-extrusion-height': 30,
-            'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.9
-          }
-        })
-        break;
-      default:
-        return
-    }
-  };
+  // const onChangeHandler = e => {
+  //   const height = e.target.value;
+  //   switch (height) {
+  //     case 10:
+  //       setLayerStyle({
+  //         ...initialLayerStyle,
+  //         paint: {
+  //           'fill-extrusion-color': '#fff',
+  //           'fill-extrusion-height': 10,
+  //           'fill-extrusion-base': 0,
+  //           'fill-extrusion-opacity': 0.9
+  //         }
+  //       })
+  //       break;
+  //     case 20:
+  //       setLayerStyle({
+  //         ...initialLayerStyle,
+  //         paint: {
+  //           'fill-extrusion-color': 'orange',
+  //           'fill-extrusion-height': 20,
+  //           'fill-extrusion-base': 0,
+  //           'fill-extrusion-opacity': 0.9
+  //         }
+  //       })
+  //       break;
+  //     case 30:
+  //       setLayerStyle({
+  //         ...initialLayerStyle,
+  //         paint: {
+  //           'fill-extrusion-color': 'red',
+  //           'fill-extrusion-height': 30,
+  //           'fill-extrusion-base': 0,
+  //           'fill-extrusion-opacity': 0.9
+  //         }
+  //       })
+  //       break;
+  //     default:
+  //       return
+  //   }
+  // };
+
+  console.log(data)
 
   return (
     <div className={'map-box-wrapper'}>
-      <Radio.Group
+      {/* <Radio.Group
         onChange={onChangeHandler}
         options={options}
         optionType="button"
         buttonStyle="solid"
-      />
+      /> */}
       <ReactMapGL
         {...viewport}
         style={{
@@ -108,7 +130,9 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
         mapboxApiAccessToken={'pk.eyJ1IjoiaXZhbmRyYWdvIiwiYSI6ImNrZ2Rzdng3dzEwam4yeXFhNmtkM2FlejMifQ.lhT4dTPZIMEBqm6wLQtxaQ'}
         onViewportChange={(viewport) => setViewport(viewport)}
       >
-        <Layer {...layerStyle} />
+        <Source type="geojson" data={data}>
+          <Layer {...layerStyle} />
+        </Source>
       </ReactMapGL>
     </div>
   );
