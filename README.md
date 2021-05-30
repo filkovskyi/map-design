@@ -2,10 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Check app online
-this is clone app for  - https://mimimaps.com.ua/editor
+# How to
+## Warning!!! -  its important to checkout to `feature-buildings` branch first
 
-check app online here - map-design.vercel.app
+1. Go to https://github.com/filkovskyi/map-design/tree/feature-buildings
 
-or here : 
-http://filkovskyi.github.io/map-design
+2. `git clone git@github.com:filkovskyi/map-design.git`
+
+3. `cd map-design`
+
+4. `git checkout feature-buildings` branch
+
+5. run `npm i` or `yarn install`
+
+6. `run npm run start` or `yarn start`
+
+# UI Example
+![all](src/assets/img/all.png "all")
