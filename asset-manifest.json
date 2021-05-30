@@ -1,29 +1,25 @@
 {
   "files": {
     "main.css": "/map-design/static/css/main.348c6488.chunk.css",
-    "main.js": "/map-design/static/js/main.fbb74e2b.chunk.js",
-    "main.js.map": "/map-design/static/js/main.fbb74e2b.chunk.js.map",
-    "runtime-main.js": "/map-design/static/js/runtime-main.11515934.js",
-    "runtime-main.js.map": "/map-design/static/js/runtime-main.11515934.js.map",
+    "main.js": "/map-design/static/js/main.4aa49a41.chunk.js",
+    "main.js.map": "/map-design/static/js/main.4aa49a41.chunk.js.map",
+    "runtime-main.js": "/map-design/static/js/runtime-main.ffc99d77.js",
+    "runtime-main.js.map": "/map-design/static/js/runtime-main.ffc99d77.js.map",
     "static/css/2.00bb4513.chunk.css": "/map-design/static/css/2.00bb4513.chunk.css",
-    "static/js/2.0462a741.chunk.js": "/map-design/static/js/2.0462a741.chunk.js",
-    "static/js/2.0462a741.chunk.js.map": "/map-design/static/js/2.0462a741.chunk.js.map",
-    "static/js/3.c428de77.chunk.js": "/map-design/static/js/3.c428de77.chunk.js",
-    "static/js/3.c428de77.chunk.js.map": "/map-design/static/js/3.c428de77.chunk.js.map",
+    "static/js/2.b2e3478c.chunk.js": "/map-design/static/js/2.b2e3478c.chunk.js",
+    "static/js/2.b2e3478c.chunk.js.map": "/map-design/static/js/2.b2e3478c.chunk.js.map",
+    "static/js/3.c79121c9.chunk.js": "/map-design/static/js/3.c79121c9.chunk.js",
+    "static/js/3.c79121c9.chunk.js.map": "/map-design/static/js/3.c79121c9.chunk.js.map",
     "index.html": "/map-design/index.html",
     "static/css/2.00bb4513.chunk.css.map": "/map-design/static/css/2.00bb4513.chunk.css.map",
     "static/css/main.348c6488.chunk.css.map": "/map-design/static/css/main.348c6488.chunk.css.map",
-    "static/js/2.0462a741.chunk.js.LICENSE.txt": "/map-design/static/js/2.0462a741.chunk.js.LICENSE.txt",
-    "static/media/building-level-17-20.fe362619.geojson": "/map-design/static/media/building-level-17-20.fe362619.geojson",
-    "static/media/building-level-21-29.4dba5190.geojson": "/map-design/static/media/building-level-21-29.4dba5190.geojson",
-    "static/media/building-level-9-16.00bcc48c.geojson": "/map-design/static/media/building-level-9-16.00bcc48c.geojson",
-    "static/media/building-level-all.ae146d5b.geojson": "/map-design/static/media/building-level-all.ae146d5b.geojson"
+    "static/js/2.b2e3478c.chunk.js.LICENSE.txt": "/map-design/static/js/2.b2e3478c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.11515934.js",
+    "static/js/runtime-main.ffc99d77.js",
     "static/css/2.00bb4513.chunk.css",
-    "static/js/2.0462a741.chunk.js",
+    "static/js/2.b2e3478c.chunk.js",
     "static/css/main.348c6488.chunk.css",
-    "static/js/main.fbb74e2b.chunk.js"
+    "static/js/main.4aa49a41.chunk.js"
   ]
 }
