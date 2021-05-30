@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Radio } from 'antd';
 import ReactMapGL, { Layer, Source } from 'react-map-gl';
-import data from '../assets/export.geojson'
+import dataLowest from '../assets/building-level-10-16.geojson'
+import dataMiddle from '../assets/building-level-16-19.geojson'
+import dataHigher from '../assets/building-level-20-29.geojson'
 
 
 const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
@@ -10,28 +12,12 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
     longitude: defaultLongitude,
     zoom: 16,
     pitch: 45,
-    bearing: -17.6,
     container: 'map',
     antialias: true,
     width: '100%',
     height: '500px',
     labels: false,
   }
-
-  // const initialLayerStyle = {
-  //   id: 'add-3d-buildings',
-  //   source: 'composite',
-  //   'source-layer': 'building',
-  //   filter: ['==', 'extrude', 'true'],
-  //   type: 'fill-extrusion',
-  //   minzoom: 15,
-  //   paint: {
-  //     'fill-extrusion-color': '#fff',
-  //     'fill-extrusion-height': 10,
-  //     'fill-extrusion-base': 0,
-  //     'fill-extrusion-opacity': 0.9
-  //   }
-  // };
 
   const initialLayerStyle = {
     'id': 'extrusion',
@@ -43,17 +29,11 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
         "features": []
       }
     },
-    'paint': {
-      'fill-extrusion-color': '#fff',
-      'fill-extrusion-height': 10,
-      'fill-extrusion-base': 0,
-      'fill-extrusion-opacity': 0.9
-    }
   };
 
   const [viewport, setViewport] = useState(initialViewportValues);
-
   const [layerStyle, setLayerStyle] = useState(initialLayerStyle)
+  const [layerSource, setLayerSource] = useState(dataLowest)
 
 
   useEffect(() => {
@@ -65,62 +45,65 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   }, [defaultLatitude, defaultLongitude]);
 
   const options = [
-    { label: '10', value: 10 },
-    { label: '20', value: 20 },
-    { label: '30', value: 30 },
+    { label: '9-16', value: '9-16' },
+    { label: '16-20', value: '16-20' },
+    { label: '20-29', value: '20-29' },
   ];
 
-  // const onChangeHandler = e => {
-  //   const height = e.target.value;
-  //   switch (height) {
-  //     case 10:
-  //       setLayerStyle({
-  //         ...initialLayerStyle,
-  //         paint: {
-  //           'fill-extrusion-color': '#fff',
-  //           'fill-extrusion-height': 10,
-  //           'fill-extrusion-base': 0,
-  //           'fill-extrusion-opacity': 0.9
-  //         }
-  //       })
-  //       break;
-  //     case 20:
-  //       setLayerStyle({
-  //         ...initialLayerStyle,
-  //         paint: {
-  //           'fill-extrusion-color': 'orange',
-  //           'fill-extrusion-height': 20,
-  //           'fill-extrusion-base': 0,
-  //           'fill-extrusion-opacity': 0.9
-  //         }
-  //       })
-  //       break;
-  //     case 30:
-  //       setLayerStyle({
-  //         ...initialLayerStyle,
-  //         paint: {
-  //           'fill-extrusion-color': 'red',
-  //           'fill-extrusion-height': 30,
-  //           'fill-extrusion-base': 0,
-  //           'fill-extrusion-opacity': 0.9
-  //         }
-  //       })
-  //       break;
-  //     default:
-  //       return
-  //   }
-  // };
+  const onChangeHandler = e => {
+    const height = e.target.value;
+    switch (height) {
+      case '9-16':
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': '#fff',
+            'fill-extrusion-height': 9,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        setLayerSource(dataLowest)
+        break;
+      case '16-20':
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'orange',
+            'fill-extrusion-height': 18,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        setLayerSource(dataMiddle)
+        break;
+      case '20-29':
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'red',
+            'fill-extrusion-height': 25,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        setLayerSource(dataHigher)
+        break;
+      default:
+        return
+    }
+  };
 
-  console.log(data)
+
 
   return (
     <div className={'map-box-wrapper'}>
-      {/* <Radio.Group
+      <Radio.Group
         onChange={onChangeHandler}
         options={options}
         optionType="button"
         buttonStyle="solid"
-      /> */}
+      />
       <ReactMapGL
         {...viewport}
         style={{
@@ -130,7 +113,7 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
         mapboxApiAccessToken={'pk.eyJ1IjoiaXZhbmRyYWdvIiwiYSI6ImNrZ2Rzdng3dzEwam4yeXFhNmtkM2FlejMifQ.lhT4dTPZIMEBqm6wLQtxaQ'}
         onViewportChange={(viewport) => setViewport(viewport)}
       >
-        <Source type="geojson" data={data}>
+        <Source type="geojson" data={layerSource}>
           <Layer {...layerStyle} />
         </Source>
       </ReactMapGL>
