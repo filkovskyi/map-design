@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Radio } from 'antd';
 import ReactMapGL, { Layer, Source } from 'react-map-gl';
+import dataAll from '../assets/building-level-all.geojson'
 import dataLowest from '../assets/building-level-10-16.geojson'
 import dataMiddle from '../assets/building-level-16-19.geojson'
 import dataHigher from '../assets/building-level-20-29.geojson'
@@ -22,18 +23,24 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   const initialLayerStyle = {
     'id': 'extrusion',
     'type': 'fill-extrusion',
-    "source": {
+    'source': {
       "type": "geojson",
       "data": {
         "type": "FeatureCollection",
         "features": []
-      }
+      },
     },
+    'paint': {
+      'fill-extrusion-color': 'white',
+      'fill-extrusion-height': 5,
+      'fill-extrusion-base': 0,
+      'fill-extrusion-opacity': 0.9
+    }
   };
 
   const [viewport, setViewport] = useState(initialViewportValues);
   const [layerStyle, setLayerStyle] = useState(initialLayerStyle)
-  const [layerSource, setLayerSource] = useState(dataLowest)
+  const [layerSource, setLayerSource] = useState(dataAll)
 
 
   useEffect(() => {
@@ -45,6 +52,7 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   }, [defaultLatitude, defaultLongitude]);
 
   const options = [
+    { label: 'all', value: 'all' },
     { label: '9-16', value: '9-16' },
     { label: '16-20', value: '16-20' },
     { label: '20-29', value: '20-29' },
@@ -53,11 +61,23 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
   const onChangeHandler = e => {
     const height = e.target.value;
     switch (height) {
+      case 'all':
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'white',
+            'fill-extrusion-height': 5,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        setLayerSource(dataAll)
+        break;
       case '9-16':
         setLayerStyle({
           ...initialLayerStyle,
           paint: {
-            'fill-extrusion-color': '#fff',
+            'fill-extrusion-color': 'yellow',
             'fill-extrusion-height': 9,
             'fill-extrusion-base': 0,
             'fill-extrusion-opacity': 0.9
@@ -90,11 +110,18 @@ const Map = ({ mapStyle, defaultLatitude, defaultLongitude, defaultCity }) => {
         setLayerSource(dataHigher)
         break;
       default:
-        return
+        setLayerStyle({
+          ...initialLayerStyle,
+          paint: {
+            'fill-extrusion-color': 'white',
+            'fill-extrusion-height': 5,
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.9
+          }
+        })
+        setLayerSource(dataAll)
     }
   };
-
-
 
   return (
     <div className={'map-box-wrapper'}>
