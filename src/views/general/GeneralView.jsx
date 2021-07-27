@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
+import { ReactMediaRecorder } from "react-media-recorder";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -8,10 +9,8 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import './GeneralView.css'
-import MapViewer from '../mavViewer/MapViewer'
-
+import MapChart from "./mapChart/MapChart";
 const { Header, Sider, Content } = Layout;
-
 const GeneralView = () => {
   const [collapsed, setCollapsed] = useState(false)
   const toggleVisible = () => setCollapsed(!collapsed);
@@ -23,13 +22,13 @@ const GeneralView = () => {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<UserOutlined />}>
             nav 1
-            </Menu.Item>
+          </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             nav 2
-            </Menu.Item>
+          </Menu.Item>
           <Menu.Item key="3" icon={<UploadOutlined />}>
             nav 3
-            </Menu.Item>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -41,15 +40,19 @@ const GeneralView = () => {
             onClick: toggleVisible,
           })}
         </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          <MapViewer />
+        <Content className="site-layout-background">
+          <ReactMediaRecorder
+            screen={true}
+            render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+              <div>
+                <p>{status}</p>
+                <button onClick={startRecording}>Start Recording</button>
+                <button onClick={stopRecording}>Stop Recording</button>
+                <video src={mediaBlobUrl} controls autoPlay loop />
+              </div>
+            )}
+          />
+          <MapChart />
         </Content>
       </Layout>
     </Layout>

@@ -94,3 +94,14 @@ background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%
   right: 5%;
   transform: translateY(-50%);
 }
+
+.path {
+  stroke-dasharray: 20;
+  animation: dash 50s linear;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
