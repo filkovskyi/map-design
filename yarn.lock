@@ -11836,6 +11836,11 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"threebox-plugin@^2.2.7":
+  "integrity" "sha512-H87Nm4w1PfisHPHzavTGXlwIoJpx2+QU57GooQYIhF51lsg+U5A0KGf3Jrv/HWsLCGOwV2BTnv7UTLfpO1EccQ=="
+  "resolved" "https://registry.npmjs.org/threebox-plugin/-/threebox-plugin-2.2.7.tgz"
+  "version" "2.2.7"
+
 "throat@^5.0.0":
   "integrity" "sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA=="
   "resolved" "https://registry.npmjs.org/throat/-/throat-5.0.0.tgz"
